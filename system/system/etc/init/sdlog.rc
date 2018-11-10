@@ -1,0 +1,17 @@
+service sdlog /system/bin/sdlog
+    class late_start
+    user root
+    disabled
+    oneshot
+
+on property:sys.logd_t2.enable=1
+    start sdlog
+    
+on property:sys.logd.enable=1
+    start sdlog
+
+on property:persist.service.logd.enable=1
+    start sdlog
+
+on property:persist.service.logd.enable=0
+    stop sdlog
